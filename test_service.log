@@ -1,0 +1,54 @@
+logger      : INFO     Test 1: "Healthcheck status"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/healthy', method='GET'
+logger      : INFO     <<< Response: status_code='200', data='{"status":"healthy"}'
+logger      : INFO     Test 1 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 2: "Default users check"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/recommendations?user_id=1&k=5', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"recs":[53404,178529,33311009,35505245,795836]}'
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/recommendations?user_id=2&k=5', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"recs":[53404,178529,33311009,35505245,795836]}'
+logger      : INFO     Test 2 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 3: "User with personal recs check"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/recommendations?user_id=93968&k=5', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"recs":[51516485,45499814,50834580,83063895,56312027]}'
+logger      : INFO     Test 3 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 4: "User without personal recs check"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/recommendations?user_id=1&k=5', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"recs":[53404,178529,33311009,35505245,795836]}'
+logger      : INFO     Test 4 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 5: "Online events test"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8030/put?user_id=93968&track_id=2193921', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"result":"OK"}'
+logger      : INFO     >>> Request: url='http://127.0.0.1:8030/put?user_id=93968&track_id=6089757', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"result":"OK"}'
+logger      : INFO     >>> Request: url='http://127.0.0.1:8030/put?user_id=93968&track_id=21228047', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"result":"OK"}'
+logger      : INFO     >>> Request: url='http://127.0.0.1:8030/put?user_id=93968&track_id=61705629', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"result":"OK"}'
+logger      : INFO     >>> Request: url='http://127.0.0.1:8030/get?user_id=93968&k=10', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"events":[61705629,21228047,6089757,2193921]}'
+logger      : INFO     Test 5 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 6: "User with online events check"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/recommendations_online?user_id=93968', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"recs":[40261956,40370692,68170903,88891624,1086743]}'
+logger      : INFO     Test 6 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 7: "Offline recs check"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/recommendations_offline?user_id=93968&k=5', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"recs":[51516485,45499814,50834580,83063895,56312027]}'
+logger      : INFO     Test 7 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 8: "Blended recommendations check"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/recommendations?user_id=93968&k=5', method='POST'
+logger      : INFO     <<< Response: status_code='200', data='{"recs":[40261956,51516485,40370692,45499814,68170903]}'
+logger      : INFO     Test 8 PASS
+logger      : INFO     --------------------------------------------------
+logger      : INFO     Test 9: "Stats check"
+logger      : INFO     >>> Request: url='http://127.0.0.1:8010/stats', method='GET'
+logger      : INFO     <<< Response: status_code='200', data='{"request_personal_count":3,"request_default_count":3}'
+logger      : INFO     Test 9 PASS
